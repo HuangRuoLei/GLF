@@ -1,0 +1,18 @@
+{
+    "name": "HuLuMao-MicroBitGuangLiFang",
+    "version": "1.0.0",
+    "description": "This is HuLuMao Micro_BitGuangLiFang V1.0.0",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "radio": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true
+}
