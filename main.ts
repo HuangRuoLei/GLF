@@ -127,7 +127,7 @@ namespace HuLuMaoGLF_display {
         basic.pause(10);
         buf[0] = ~(0x01 << (8 - index));
         buf[1] = (0x01 << (8 - index1));
-        buf[2] = index2;
+        buf[2] = 0x01<<index2;
         pins.i2cWriteBuffer(65, buf);
     }
     /*
