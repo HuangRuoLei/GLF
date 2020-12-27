@@ -136,5 +136,26 @@ namespace HuLuMaoGLF_display {
         buf[1] =0x01<<index;
         pins.i2cWriteBuffer(66, buf);
     }
+
+    /**
+     * 调用此来点亮自定义LED灯
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_display_dispaly4 block="光立方绘图 层数值(z)|%index,列数值(y)|%index1,排数值(x)|%index2"
+    //% weight=96
+    //% blockGap=10
+    //% index.min=0 index.max=255
+    //% index1.min=0 index1.max=255
+    //% index2.min=0 index2.max=255
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function dispaly4(index:number,index1:number,index2:number): void {
+        let buf = pins.createBuffer(3);
+        basic.pause(10);
+        buf[0] = index;
+        buf[1] = index1;
+        buf[2] = index2;
+        pins.i2cWriteBuffer(67, buf);
+    }
 }
 
