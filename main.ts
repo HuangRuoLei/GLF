@@ -76,7 +76,7 @@ namespace HuLuMaoGLF_display {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function dispaly_one(index:number,index1:number,index2:number): void {
         let buf = pins.createBuffer(3);
-        basic.pause(10);
+      //  basic.pause(10);
         buf[0] = ~(0x01 << (7 - index));
         buf[1] = (0x01 << (7 - index1));
         buf[2] = 0x01<<index2;
