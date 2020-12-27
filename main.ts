@@ -1,4 +1,4 @@
-//% color="#006400" weight=50 icon="\uf1b9" block="呼噜猫光立方通信确认"
+//% color="#4169E1" weight=50 icon="\uf1b0" block="呼噜猫光立方通信确认"
 namespace HuLuMaoGLF_connection {
 
     export enum connet{
@@ -14,7 +14,7 @@ namespace HuLuMaoGLF_connection {
     //% blockId=HuLuMaoGLF_connection_con block="建立 MicroBit 与光立方的通信"
     //% weight=100
     //% blockGap=10
-    //% color="#006400"
+    //% color="#4169E1"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function con(): void {
         let length;
@@ -47,15 +47,15 @@ namespace HuLuMaoGLF_connection {
         }
     }
 
-    /**
+    /*
      * 调用此来建立光立方与遥控器的通信,并设置一个通信密码(最大为255)
      * @param index
-    */
+    
     //% blockId=HuLuMaoGLF_connection_con1 block="光立方与遥控器|%index1通信,通信密码为|%index"
     //% weight=99
     //% blockGap=10
     //% index.min=1 index.max=255
-    //% color="#006400"
+    //% color="#4169E1"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function con1(index1:connet,index:number): void {
         let data=0;
@@ -86,10 +86,10 @@ namespace HuLuMaoGLF_connection {
                     . . . . .
             `);
         }
-    }
+    }*/
 }
 
-//% color="#006400" weight=50 icon="\uf1b9" block="呼噜猫光立方显示类"
+//% color="#4169E1" weight=50 icon="\uf1b0" block="呼噜猫光立方显示类"
 namespace HuLuMaoGLF_display { 
     export enum XYZ{
         //% blockId="_1" block="1"
@@ -111,7 +111,7 @@ namespace HuLuMaoGLF_display {
     }
 
     /**
-     * 调用此来点亮其中一个LED灯
+     * 调用此来点亮某个LED灯
      * @param index
     */
     //% blockId=HuLuMaoGLF_connection_dispaly_one block="点亮第|%index层(z)，第|%index1列(y)，第|%index2个(x)处LED"
@@ -120,7 +120,7 @@ namespace HuLuMaoGLF_display {
     //% index.min=0 index.max=7
     //% index1.min=0 index1.max=7
     //% index2.min=0 index2.max=7
-    //% color="#006400"
+    //% color="#4169E1"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function dispaly_one(index:number,index1:number,index2:number): void {
         let buf = pins.createBuffer(3);
@@ -140,5 +140,21 @@ namespace HuLuMaoGLF_display {
         pins.i2cWriteBuffer(65, buf);
     }
     */
+   /**
+     * 调用此来点亮某层LED灯
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_connection_dispaly1 block="点亮第|%index层(z)LED"
+    //% weight=99
+    //% blockGap=10
+    //% index.min=0 index.max=7
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function dispaly1(index:number): void {
+        let buf=0;
+        basic.pause(10);
+        buf = ~(0x01 << (7 - index));
+        pins.i2cWriteNumber(66, buf, NumberFormat.UInt8LE);
+    }
 }
 
