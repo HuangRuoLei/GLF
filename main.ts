@@ -114,7 +114,7 @@ namespace HuLuMaoGLF_display {
      * 调用此来点亮某个LED灯
      * @param index
     */
-    //% blockId=HuLuMaoGLF_connection_dispaly_one block="点亮第|%index层(z)，第|%index1列(y)，第|%index2个(x)处LED"
+    //% blockId=HuLuMaoGLF_connection_dispaly_one block="点亮第|%index层(z轴)，第|%index1列(y轴)，第|%index2个(x轴)处LED"
     //% weight=100
     //% blockGap=10
     //% index.min=0 index.max=7
@@ -144,16 +144,51 @@ namespace HuLuMaoGLF_display {
      * 调用此来点亮某层LED灯
      * @param index
     */
-    //% blockId=HuLuMaoGLF_connection_dispaly1 block="点亮第|%index层(z)LED"
-    //% weight=99
+    //% blockId=HuLuMaoGLF_connection_dispaly1 block="点亮第|%index层(z轴)LED"
+    //% weight=50
     //% blockGap=10
     //% index.min=0 index.max=7
     //% color="#4169E1"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function dispaly1(index:number): void {
-        let buf=0;
+        let buf=pins.createBuffer(2);
+        buf[0]=1;
         basic.pause(10);
-        buf = ~(0x01 << (7 - index));
+        buf[1] = ~(0x01 << (7 - index));
+        pins.i2cWriteBuffer(65, buf);
+    }
+    /**
+     * 调用此来点亮某层LED灯
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_connection_dispaly2 block="点亮第|%index列(y轴)LED"
+    //% weight=49
+    //% blockGap=10
+    //% index.min=0 index.max=7
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function dispaly2(index:number): void {
+        let buf=pins.createBuffer(2);
+        buf[0]=2;
+        basic.pause(10);
+        buf[1] = (0x01 << (7 - index1));
+        pins.i2cWriteBuffer(65, buf);
+    }
+    /**
+     * 调用此来点亮某层LED灯
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_connection_dispaly3 block="点亮第|%index排(x轴)LED"
+    //% weight=48
+    //% blockGap=10
+    //% index.min=0 index.max=7
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function dispaly3(index:number): void {
+        let buf=pins.createBuffer(2);
+        buf[0]=3;
+        basic.pause(10);
+        buf[1] = 0x01<<index2;
         pins.i2cWriteNumber(66, buf, NumberFormat.UInt8LE);
     }
 }
