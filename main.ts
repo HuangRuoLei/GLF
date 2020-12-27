@@ -130,16 +130,7 @@ namespace HuLuMaoGLF_display {
         buf[2] = 0x01<<index2;
         pins.i2cWriteBuffer(65, buf);
     }
-    /*
-    export function dispaly_one(index:XYZ,index1:XYZ,index2:XYZ): void {
-        let buf = pins.createBuffer(3);
-        basic.pause(11);
-        buf[0] = ~(0x01 << (8 - index));
-        buf[1] = (0x01 << (8 - index1));
-        buf[2] = index2;
-        pins.i2cWriteBuffer(65, buf);
-    }
-    */
+    
    /**
      * 调用此来点亮某层LED灯
      * @param index
@@ -151,10 +142,28 @@ namespace HuLuMaoGLF_display {
     //% color="#4169E1"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function dispaly1(index:number): void {
-        let buf=0;
+        let buf=pins.createBuffer(2);
         basic.pause(10);
         buf = ~(0x01 << (7 - index));
         pins.i2cWriteNumber(66, buf, NumberFormat.UInt8LE);
+    }
+
+    /**
+     * 调用此来点亮某列LED灯
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_connection_dispaly2 block="点亮第|%index列(y)LED"
+    //% weight=70
+    //% blockGap=10
+    //% index.min=0 index.max=7
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function dispaly2(index:number): void {
+        let buf=pins.createBuffer(2);
+        buf[0]=2;
+        basic.pause(10);
+        buf[1] = ~(0x01 << (7 - index));
+        pins.i2cWriteNumber(66, buf[1], NumberFormat.UInt8LE);
     }
 }
 
