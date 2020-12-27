@@ -155,10 +155,10 @@ namespace HuLuMaoGLF_display {
         buf[0]=1;
         basic.pause(10);
         buf[1] = ~(0x01 << (7 - index));
-        pins.i2cWriteBuffer(65, buf);
+        pins.i2cWriteBuffer(66, buf);
     }
     /**
-     * 调用此来点亮某层LED灯
+     * 调用此来点亮某列LED灯
      * @param index
     */
     //% blockId=HuLuMaoGLF_connection_dispaly2 block="点亮第|%index列(y轴)LED"
@@ -172,10 +172,10 @@ namespace HuLuMaoGLF_display {
         buf[0]=2;
         basic.pause(10);
         buf[1] = (0x01 << (7 - index));
-        pins.i2cWriteBuffer(65, buf);
+        pins.i2cWriteBuffer(66, buf);
     }
     /**
-     * 调用此来点亮某层LED灯
+     * 调用此来点亮某排LED灯
      * @param index
     */
     //% blockId=HuLuMaoGLF_connection_dispaly3 block="点亮第|%index排(x轴)LED"
@@ -189,7 +189,7 @@ namespace HuLuMaoGLF_display {
         buf[0]=3;
         basic.pause(10);
         buf[1] = 0x01<<index;
-        pins.i2cWriteNumber(66, buf, NumberFormat.UInt8LE);
+        pins.i2cWriteBuffer(66, buf);
     }
 }
 
