@@ -46,47 +46,6 @@ namespace HuLuMaoGLF_connection {
             }
         }
     }
-
-    /*
-     * 调用此来建立光立方与遥控器的通信,并设置一个通信密码(最大为255)
-     * @param index
-    
-    //% blockId=HuLuMaoGLF_connection_con1 block="光立方与遥控器|%index1通信,通信密码为|%index"
-    //% weight=99
-    //% blockGap=10
-    //% index.min=1 index.max=255
-    //% color="#4169E1"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
-    export function con1(index1:connet,index:number): void {
-        let data=0;
-        let aaa=0;
-        switch(index1){
-            case connet.yes:aaa=1;break;
-            case connet.no:aaa=2;break;
-        }
-        if(aaa==2){
-            pins.i2cWriteNumber(65, 1, NumberFormat.UInt8LE);
-        }
-        else if(aaa==1){
-            for(let i=0;i<8;i++){
-                pins.i2cWriteNumber(75, index, NumberFormat.UInt8LE);
-            }
-            while(data!=2){
-                basic.pause(10);
-                data=pins.i2cReadNumber(75, NumberFormat.UInt8LE);
-                basic.showIcon(IconNames.SmallSquare);
-            }
-            basic.showIcon(IconNames.Square);
-            basic.pause(1000);
-            basic.showLeds(`
-                    . . . . .
-                    . . . . .
-                    . . . . .
-                    . . . . .
-                    . . . . .
-            `);
-        }
-    }*/
 }
 
 //% color="#4169E1" weight=50 icon="\uf1b0" block="呼噜猫光立方显示类"
@@ -130,20 +89,11 @@ namespace HuLuMaoGLF_display {
         buf[2] = 0x01<<index2;
         pins.i2cWriteBuffer(65, buf);
     }
-    /*
-    export function dispaly_one(index:XYZ,index1:XYZ,index2:XYZ): void {
-        let buf = pins.createBuffer(3);
-        basic.pause(11);
-        buf[0] = ~(0x01 << (8 - index));
-        buf[1] = (0x01 << (8 - index1));
-        buf[2] = index2;
-        pins.i2cWriteBuffer(65, buf);
-    }
-    */
-   /**
+
+   /*
      * 调用此来点亮某层LED灯
      * @param index
-    */
+    
     //% blockId=HuLuMaoGLF_connection_dispaly1 block="点亮第|%index层(z轴)LED"
     //% weight=50
     //% blockGap=10
@@ -156,7 +106,7 @@ namespace HuLuMaoGLF_display {
         basic.pause(10);
         buf[1] = ~(0x01 << (7 - index));
         pins.i2cWriteBuffer(66, buf);
-    }
+    }*/
     /*
      * 调用此来点亮某列LED灯
      * @param index
