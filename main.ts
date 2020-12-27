@@ -117,16 +117,16 @@ namespace HuLuMaoGLF_display {
     //% blockId=HuLuMaoGLF_connection_dispaly_one block="点亮第|%index层(z)，第|%index1列(y)，第|%index2个(x)处LED"
     //% weight=100
     //% blockGap=10
-    //% index.min=1 index.max=8
-    //% index1.min=1 index1.max=8
-    //% index2.min=1 index2.max=8
+    //% index.min=0 index.max=7
+    //% index1.min=0 index1.max=7
+    //% index2.min=0 index2.max=7
     //% color="#006400"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function dispaly_one(index:number,index1:number,index2:number): void {
         let buf = pins.createBuffer(3);
         basic.pause(10);
-        buf[0] = ~(0x01 << (8 - index));
-        buf[1] = (0x01 << (8 - index1));
+        buf[0] = ~(0x01 << (7 - index));
+        buf[1] = (0x01 << (7 - index1));
         buf[2] = 0x01<<index2;
         pins.i2cWriteBuffer(65, buf);
     }
