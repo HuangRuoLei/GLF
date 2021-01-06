@@ -11,14 +11,6 @@ namespace HuLuMaoGLF_connection {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function con(): void {
         let length;
-        let length1;
-        for(let i=0;i<2;i++){
-            basic.pause(10);
-            length1=pins.i2cReadNumber(64, NumberFormat.UInt8LE);
-            if(length1==44){
-                break;
-            }
-        }
         for(let i=0;i<20;i++){
             basic.pause(10);
             length=pins.i2cReadNumber(66, NumberFormat.UInt8LE);
@@ -61,7 +53,12 @@ namespace HuLuMaoGLF_display {
         //% blockId="_8" block="8"
         _8
     }
-
+    export enum AllLED{
+        //% blockId="_1" block="熄灭"
+        _1 = 1,
+        //% blockId="_2" block="点亮"
+        _2,
+    }
     /**
      * 调用此来点亮某个LED灯
      * @param index
@@ -151,6 +148,19 @@ namespace HuLuMaoGLF_display {
         buf[1] = index1;
         buf[2] = index2;
         pins.i2cWriteBuffer(67, buf);
+    }
+
+     /**
+     * 调用此来点亮或熄灭所有LED
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_display_dispaly5 block="|%index所有的LED"
+    //% weight=97
+    //% blockGap=10
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function dispaly5(index:AllLED): void {
+        pins.i2cWriteNumber(68, index, NumberFormat.UInt8LE); 
     }
 }
 
