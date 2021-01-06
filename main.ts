@@ -76,7 +76,6 @@ namespace HuLuMaoGLF_display {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function dispaly_one(index:number,index1:number,index2:number): void {
         let buf = pins.createBuffer(3);
-        basic.pause(7);
         buf[0] = ~(0x01 << (7 - index));
         buf[1] = (0x01 << (7 - index1));
         buf[2] = 0x01<<index2;
@@ -96,7 +95,6 @@ namespace HuLuMaoGLF_display {
     export function dispaly1(index:number): void {
         let buf=pins.createBuffer(2);
         buf[0]=1;
-        basic.pause(7);
         buf[1] = ~(0x01 << (7 - index));
         pins.i2cWriteBuffer(66, buf);
     }
@@ -114,7 +112,6 @@ namespace HuLuMaoGLF_display {
     export function dispaly2(index:number): void {
         let buf=pins.createBuffer(2);
         buf[0]=2;
-        basic.pause(7);
         buf[1] =(0x01 << (7 - index));
         pins.i2cWriteBuffer(66, buf);
     }
@@ -132,7 +129,6 @@ namespace HuLuMaoGLF_display {
     export function dispaly3(index:number): void {
         let buf=pins.createBuffer(2);
         buf[0]=3;
-        basic.pause(7);
         buf[1] =0x01<<index;
         pins.i2cWriteBuffer(66, buf);
     }
@@ -151,7 +147,6 @@ namespace HuLuMaoGLF_display {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function dispaly4(index:number,index1:number,index2:number): void {
         let buf = pins.createBuffer(3);
-        basic.pause(7);
         buf[0] = index;
         buf[1] = index1;
         buf[2] = index2;
