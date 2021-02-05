@@ -73,8 +73,8 @@ namespace HuLuMaoGLF_display {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function dispaly_one(index:number,index1:number,index2:number): void {
         let buf = pins.createBuffer(3);
-        buf[0] = ~(0x01 << (7 - index));
-        buf[1] = (0x01 << (7 - index1));
+        buf[0] = 0x01 <<index;
+        buf[1] = 0x01 <<index1;
         buf[2] = 0x01<<index2;
         pins.i2cWriteBuffer(65, buf);
     }
@@ -92,7 +92,7 @@ namespace HuLuMaoGLF_display {
     export function dispaly1(index:number): void {
         let buf=pins.createBuffer(2);
         buf[0]=1;
-        buf[1] = (0x01 << index);
+        buf[1] =0x01 << index;
         pins.i2cWriteBuffer(66, buf);
     }
 
@@ -109,7 +109,7 @@ namespace HuLuMaoGLF_display {
     export function dispaly2(index:number): void {
         let buf=pins.createBuffer(2);
         buf[0]=2;
-        buf[1] =(0x01 << index);
+        buf[1] =0x01 << index;
         pins.i2cWriteBuffer(66, buf);
     }
 
@@ -164,3 +164,49 @@ namespace HuLuMaoGLF_display {
     }
 }
 
+//% color="#4169E1" weight=50 icon="\uf1b0" block="呼噜猫光立方数学类"
+namespace HuLuMaoGLF_math {
+
+    export enum YuHuo{
+        //% blockId="yu" block="与"
+        yu = 1,
+        //% blockId="huo" block="或"
+        huo,
+    }
+    /**
+     * 
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_math_logic1 block="将|%index和|%index1进行按位|%index2"
+    //% weight=100
+    //% blockGap=10
+    //% index.min=0 index.max=255
+    //% index1.min=0 index1.max=255
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function logic1(index:number,index1:number,index2:YuHuo): number {
+        let length;
+        switch(index2){
+            case YuHuo.yu:length=(index&index1);break;
+            case YuHuo.huo:length=(index|index2);break;
+        }
+        return length;
+    }
+
+        /**
+     * 
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_math_logic2 block="将|%index进行按位取反"
+    //% weight=99
+    //% blockGap=10
+    //% index.min=0 index.max=255
+    //% index1.min=0 index1.max=255
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function logic2(index:number): number {
+        let length;
+        length=(~index);
+        return length;
+    }
+}
