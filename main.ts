@@ -188,7 +188,7 @@ namespace HuLuMaoGLF_math {
         let length;
         switch(index2){
             case YuHuo.yu:length=(index&index1);break;
-            case YuHuo.huo:length=(index|index2);break;
+            case YuHuo.huo:length=(index|index1);break;
         }
         return length;
     }
