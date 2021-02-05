@@ -92,7 +92,7 @@ namespace HuLuMaoGLF_display {
     export function dispaly1(index:number): void {
         let buf=pins.createBuffer(2);
         buf[0]=1;
-        buf[1] = ~(0x01 << (7 - index));
+        buf[1] = (0x01 << index);
         pins.i2cWriteBuffer(66, buf);
     }
 
@@ -109,7 +109,7 @@ namespace HuLuMaoGLF_display {
     export function dispaly2(index:number): void {
         let buf=pins.createBuffer(2);
         buf[0]=2;
-        buf[1] =(0x01 << (7 - index));
+        buf[1] =(0x01 << index);
         pins.i2cWriteBuffer(66, buf);
     }
 
