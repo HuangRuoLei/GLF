@@ -164,8 +164,8 @@ namespace HuLuMaoGLF_display {
     }
 }
 
-//% color="#4169E1" weight=50 icon="\uf1b0" block="呼噜猫光立方数学类"
-namespace HuLuMaoGLF_math {
+//% color="#4169E1" weight=50 icon="\uf1b0" block="呼噜猫光立方逻辑类"
+namespace HuLuMaoGLF_logic {
 
     export enum YuHuo{
         //% blockId="yu" block="与"
@@ -173,11 +173,17 @@ namespace HuLuMaoGLF_math {
         //% blockId="huo" block="或"
         huo,
     }
+    export enum move{
+        //% blockId="zuo" block="左移"
+        zuo = 1,
+        //% blockId="you" block="右移"
+        you,
+    }
     /**
      * 
      * @param index
     */
-    //% blockId=HuLuMaoGLF_math_logic1 block="将|%index和|%index1进行按位|%index2"
+    //% blockId=HuLuMaoGLF_logic_logic1 block="将|%index和|%index1进行按位|%index2"
     //% weight=100
     //% blockGap=10
     //% index.min=0 index.max=255
@@ -193,15 +199,14 @@ namespace HuLuMaoGLF_math {
         return length;
     }
 
-        /**
+    /**
      * 
      * @param index
     */
-    //% blockId=HuLuMaoGLF_math_logic2 block="将|%index进行按位取反"
+    //% blockId=HuLuMaoGLF_logic_logic2 block="将|%index进行按位取反"
     //% weight=99
     //% blockGap=10
     //% index.min=0 index.max=255
-    //% index1.min=0 index1.max=255
     //% color="#4169E1"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function logic2(index:number): number {
@@ -209,4 +214,42 @@ namespace HuLuMaoGLF_math {
         length=(~index);
         return length;
     }
+
+    /**
+     * 
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_logic_logic3 block="将|%index进行|%index1 |%index2"
+    //% weight=98
+    //% blockGap=10
+    //% index.min=0 index.max=255
+    //% index2.min=0 index2.max=255
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function logic3(index:number,index1:move,index2:number): number {
+        let length;
+        switch(index1){
+            case move.zuo:length=index<<index2;break;
+            case move.you:length=index>>index2;break;
+        }
+        return length;
+    }
+}
+
+//% color="#4169E1" weight=50 icon="\uf1b0" block="呼噜猫光立方数学类"
+namespace HuLuMaoGLF_math {
+   /**
+     * 
+     * @param index
+    */
+    //% blockId=HuLuMaoGLF_math_math1 block="运算|%index的|%index1次方"
+    //% weight=98
+    //% blockGap=10
+    //% color="#4169E1"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function math1(index:number,index1:number): number {
+        let length;
+        length=Math.pow(index,index1);
+        return length;
+    } 
 }
